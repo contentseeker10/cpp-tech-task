@@ -6,12 +6,14 @@
 * Project
 */
 
+#pragma once
+
 #include <stdexcept>
 #include <type_traits>
 #include <string>
 
 template<typename T>
-T getstrv(const std::string& line, const std::string& delims) {
+T getstrc(const std::string& line, const std::string& delims) {
 	T tokens;
 	size_t begin = line.find_first_not_of(delims);
 	size_t end = line.find_first_of(delims, begin);
@@ -26,15 +28,21 @@ T getstrv(const std::string& line, const std::string& delims) {
 }
 
 template <typename T>
+auto reserve_if_possible(T& container, std::size_t size) -> decltype(container.reserve(size), void()) {
+	container.reserve(size);
+}
+inline void reserve_if_possible(...) {}
+
+template <typename T>
 struct is_string_container : std::false_type {};
 
 template <template <typename...> class C, typename... Args>
 struct is_string_container<C<std::string, Args...>> : std::true_type {};
 
 template <typename T, typename C, typename = typename std::enable_if<is_string_container<C>::value>::type>
-T getintv(const C& strc) {
+T getintc(const C& strc) {
 	T res;
-	res.reserve(strc.size());
+	reserve_if_possible(res, strc.size());
 
 	for (const auto& e : strc) {
 		auto val = std::stoi(e);
