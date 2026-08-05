@@ -18,13 +18,8 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="array_line_parser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="array_line_parser.h">
+    <ClCompile Include="array_line_parser.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
+    </ClCompile>
   </ItemGroup>
 </Project>
