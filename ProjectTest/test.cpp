@@ -41,7 +41,31 @@ TEST(Parser, Fills_Container_Successfully) {
 
 TEST(TransformerFactory, Creates_Transformer_Successfully) {
 	Fac<IntVec> f(new ArraySorterFactory<IntVec>);
-	ASSERT_NE(f, nullptr);
+	EXPECT_NE(f, nullptr);
 	auto t = f->create();
-	ASSERT_NE(t, nullptr);
+	EXPECT_NE(t, nullptr);
+}
+
+TEST(Transformer, Sorts_Ascending_Successfully) {
+	IntVec actual{ 5, 6, 1, 2 };
+	IntVec expected{ 1, 2, 5, 6 };
+
+	Fac<IntVec> f(new ArraySorterFactory<IntVec>);
+	auto t = f->create();
+
+	t->op(actual);
+
+	EXPECT_EQ(actual, expected);
+}
+
+TEST(Transformer, Sorts_Descending_Successfully) {
+	IntVec actual{ 5, 6, 1, 2 };
+	IntVec expected{ 6, 5, 2, 1 };
+
+	Fac<IntVec> f(new ArrayReverseSorterFactory<IntVec>);
+	auto t = f->create();
+
+	t->op(actual);
+
+	EXPECT_EQ(actual, expected);
 }
