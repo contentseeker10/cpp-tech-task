@@ -14,6 +14,11 @@
 #include <algorithm>
 
 namespace custom {
+	/// @brief Filters container 'a' in-place, keeping only elements present in container 'b'.
+	/// @tparam T1 Target container type (modified in-place).
+	/// @tparam T2 Source container type.
+	/// @param[in,out] a Target container to filter.
+	/// @param[in] b Source container to check against.
 	template <typename T1, typename T2>
 	void unpack(T1& a, const T2& b) {
 		if (a.empty()) return;
@@ -27,8 +32,14 @@ namespace custom {
 		);
 	}
 
+	/// @brief Computes in-place intersection of primary container 'cont' with multiple containers.
+	/// @tparam T Primary target container type.
+	/// @tparam Args Additional container types.
+	/// @param[in,out] cont Primary container updated with common elements.
+	/// @param[in] args Variadic parameter pack of containers to intersect against.
 	template <typename T, typename... Args>
 	void intersect(T& cont, const Args&... args) {
 		int i[] = { 0, (unpack(cont, args), 0)... };
+		(void)i;
 	}
 }

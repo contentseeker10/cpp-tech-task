@@ -13,6 +13,7 @@
 #include <iterator>
 
 namespace custom {
+	/// @brief Swaps two values by reference.
 	template <typename T>
 	void swap(T& a, T& b) {
 		T temp = a;
@@ -20,6 +21,11 @@ namespace custom {
 		b = temp;
 	}
 
+	/// @brief Lomuto partition scheme for QuickSort.
+	/// @tparam It Random access iterator type.
+	/// @param begin Iterator to start of range.
+	/// @param end Iterator to end of range.
+	/// @return Iterator to the pivot position after partitioning.
 	template <typename It>
 	It partition(It begin, It end) {
 		auto pivot = *(end - 1);
@@ -35,6 +41,10 @@ namespace custom {
 		return i;
 	}
 
+	/// @brief In-place QuickSort algorithm for random access iterator ranges.
+	/// @tparam It Random access iterator type.
+	/// @param begin Iterator to start of range.
+	/// @param end Iterator to end of range.
 	template <typename It>
 	void sort(It begin, It end) {
 		if (begin < end) {

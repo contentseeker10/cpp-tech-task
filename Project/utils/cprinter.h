@@ -17,6 +17,9 @@
 using std::cout;
 using std::endl;
 
+/// @brief Prints container elements in formatted, column-aligned output.
+/// @tparam T Container type.
+/// @param con Container instance to print.
 template <typename T>
 void cprint(const T& con) {
     std::cout << "\t[";
