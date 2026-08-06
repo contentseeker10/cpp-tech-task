@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include "cprinter.h"
+#include "csorter.h"
 
 template <typename T>
 class ArrayTransformer {
@@ -23,7 +23,7 @@ template <typename T>
 class ArraySorter : public ArrayTransformer<T> {
 public:
 	void op(T& arr) override {
-
+		custom::sort(arr, arr.begin(), arr.end());
 	}
 };
 
