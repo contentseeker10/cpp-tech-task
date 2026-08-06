@@ -10,3 +10,16 @@
 
 #pragma once
 
+#include <iostream>
+
+using std::cout;
+using std::endl;
+
+template <typename T>
+void print(const T& con) {
+	cout << "{ ";
+	for (const auto& e : con) {
+		cout << e << ' ';
+	}
+	cout << "}" << endl;
+}
