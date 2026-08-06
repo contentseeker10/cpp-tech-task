@@ -11,6 +11,7 @@
 #pragma once
 
 #include <unordered_set>
+#include <algorithm>
 
 namespace custom {
 	template <typename T1, typename T2>
@@ -19,10 +20,10 @@ namespace custom {
 		std::unordered_set<typename T1::value_type> uset(b.begin(), b.end());
 		a.erase(
 			std::remove_if(a.begin(), a.end(),
-				[&uset](<const typename C1::value_type& v>) {
+				[&uset](const typename T1::value_type& v) {
 					return uset.count(v) == 0;
 				}),
-			a.end();
+			a.end()
 		);
 	}
 

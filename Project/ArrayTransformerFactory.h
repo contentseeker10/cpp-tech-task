@@ -12,50 +12,58 @@
 
 #include <memory>
 
-template <typename T>
-using ptr = std::unique_ptr<ArrayTransformer<T>>;
-
 #include "ArrayTransformer.h"
 
-template <typename T>
+template <typename T, typename... Args>
+using ptr = std::unique_ptr<ArrayTransformer<T, Args...>>;
+
+template <typename T, typename... Args>
 class ArrayTransformerFactory
 {
 public:
 	virtual ~ArrayTransformerFactory() = default;
-	virtual ptr<T> create() = 0;
+	virtual ptr<T, Args...> create() = 0;
 };
 
-template <typename T>
-class ArraySorterFactory : public ArrayTransformerFactory<T> {
-	ptr<T> create() override {
-		return ptr<T>(new ArraySorter<T>());
+template <typename T, typename... Args>
+class ArraySorterFactory : public ArrayTransformerFactory<T, Args...> {
+	ptr<T, Args...> create() override {
+		return ptr<T, Args...>(new ArraySorter<T, Args...>());
 	}
 };
 
-template <typename T>
-class ArrayReverseSorterFactory : public ArrayTransformerFactory<T> {
-	ptr<T> create() override {
-		return ptr<T>(new ArrayReverseSorter<T>());
+template <typename T, typename... Args>
+class ArrayReverseSorterFactory : public ArrayTransformerFactory<T, Args...> {
+	ptr<T, Args...> create() override {
+		return ptr<T, Args...>(new ArrayReverseSorter<T, Args...>());
 	}
 };
 
-template <typename T>
-class ArrayIntersectorFactory : public ArrayTransformerFactory<T> {
-	ptr<T> create() override {
-		return ptr<T>(new ArrayIntersector<T>());
+template <typename T, typename... Args>
+class ArrayIntersectorFactory : public ArrayTransformerFactory<T, Args...> {
+	ptr<T, Args...> create() override {
+		return ptr<T, Args...>(new ArrayIntersector<T, Args...>());
 	}
 };
 
-template <typename T>
-class ArrayUnifierFactory : public ArrayTransformerFactory<T> {
-	ptr<T> create() override {
-		return ptr<T>(new ArrayUnifier<T>());
+template <typename T, typename... Args>
+class ArrayUnifierFactory : public ArrayTransformerFactory<T, Args...> {
+	ptr<T, Args...> create() override {
+		return ptr<T, Args...>(new ArrayUnifier<T, Args...>());
 	}
 };
 
-template <typename T>
-class ArrayFilterFactory : public ArrayTransformerFactory<T> {
-	ptr<T> create() override {
-		return ptr<T>(new ArrayFilter<T>());
+template <typename T, typename... Args>
+class ArrayFilterFactory : public ArrayTransformerFactory<T, Args...> {
+	ptr<T, Args...> create() override {
+		return ptr<T, Args...>(new ArrayFilter<T, Args...>());
 	}
 };
+
+template <typename T, typename... Args>
+using TrFac = ArrayTransformerFactory<T, Args...>;
+
+template <template <typename, typename...> class Factory, typename T, typename... Args>
+std::unique_ptr<TrFac<T, Args...>> make_factory(const T&, const Args&...) {
+	return std::unique_ptr<TrFac<T, Args...>>(new Factory<T, Args...>());
+}

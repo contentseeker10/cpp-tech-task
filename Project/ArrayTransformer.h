@@ -21,23 +21,23 @@ public:
 };
 
 template <typename T, typename... Args>
-class ArraySorter : public ArrayTransformer<T> {
+class ArraySorter : public ArrayTransformer<T, Args...> {
 public:
-	void op(T& arr, Args... args) override {
+	void op(T& arr, const Args&... args) override {
 		custom::sort(arr.begin(), arr.end());
 	}
 };
 
 template <typename T, typename... Args>
-class ArrayReverseSorter : public ArrayTransformer<T> {
+class ArrayReverseSorter : public ArrayTransformer<T, Args...> {
 public:
-	void op(T& arr, Args... args) override {
+	void op(T& arr, const Args&... args) override {
 		custom::sort(arr.rbegin(), arr.rend());
 	}
 };
 
 template <typename T, typename... Args>
-class ArrayIntersector : public ArrayTransformer<T> {
+class ArrayIntersector : public ArrayTransformer<T, Args...> {
 public:
 	void op(T& arr, const Args&... args) override {
 		custom::intersect(arr, args...);
@@ -45,7 +45,7 @@ public:
 };
 
 template <typename T, typename... Args>
-class ArrayUnifier : public ArrayTransformer<T> {
+class ArrayUnifier : public ArrayTransformer<T, Args...> {
 public:
 	void op(T& arr, const Args&... args) override {
 
@@ -53,7 +53,7 @@ public:
 };
 
 template <typename T, typename... Args>
-class ArrayFilter : public ArrayTransformer<T> {
+class ArrayFilter : public ArrayTransformer<T, Args...> {
 public:
 	void op(T& arr, const Args&... args) override {
 
