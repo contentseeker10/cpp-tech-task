@@ -96,3 +96,31 @@ TEST(TransformerIntersector, Gets_ContainersIntersection_Correctly) {
 
 	EXPECT_EQ(c1, expected);
 }
+
+TEST(TransformerUnifier, Gets_VectorsUnion_Correctly) {
+	IntVec v1{ 1, 2, 3, 4 };
+	IntVec v2{ 5, 6, 7 };
+	IntVec v3{ 8, 9 };
+	IntVec expected{ 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+	auto f = make_factory<ArrayUnifierFactory>(v1, v2, v3);
+	auto t = f->create();
+
+	t->op(v1, v2, v3);
+
+	EXPECT_EQ(v1, expected);
+}
+
+TEST(TransformerUnifier, Gets_ContainersUnion_Correctly) {
+	std::vector<int> c1{ 1, 2, 3, 4 };
+	std::list<int> c2{ 5, 6, 7 };
+	std::set<int> c3{ 8, 9 };
+	IntVec expected{ 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+	auto f = make_factory<ArrayUnifierFactory>(c1, c2, c3);
+	auto t = f->create();
+
+	t->op(c1, c2, c3);
+
+	EXPECT_EQ(c1, expected);
+}
