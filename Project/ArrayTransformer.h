@@ -22,7 +22,7 @@ public:
 template <typename T>
 class ArraySorter : public ArrayTransformer<T> {
 public:
-	void op() override {
+	void op(T& arr) override {
 
 	}
 };
@@ -30,7 +30,7 @@ public:
 template <typename T>
 class ArrayReverseSorter : public ArrayTransformer<T> {
 public:
-	void op() override {
+	void op(T& arr) override {
 
 	}
 };
@@ -38,7 +38,7 @@ public:
 template <typename T>
 class ArrayIntersector : public ArrayTransformer<T> {
 public:
-	void op() override {
+	void op(T& arr) override {
 
 	}
 };
@@ -46,7 +46,7 @@ public:
 template <typename T>
 class ArrayUnifier : public ArrayTransformer<T> {
 public:
-	void op() override {
+	void op(T& arr) override {
 
 	}
 };
@@ -54,7 +54,7 @@ public:
 template <typename T>
 class ArrayFilter : public ArrayTransformer<T> {
 public:
-	void op() override {
+	void op(T& arr) override {
 
 	}
 };

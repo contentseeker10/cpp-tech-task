@@ -3,7 +3,7 @@
 * August 2026
 *
 * cpp-tech-task
-* Project
+* ProjectTest
 * 
 * test.cpp
 */
@@ -34,4 +34,11 @@ TEST(Parser, Fills_Container_Successfully) {
 	std::list<std::string> strl{ getstrc<std::list<std::string>>(test_data, ", ") };
 	std::list<int> inta{ getintc<std::list<int>>(strl) };
 	EXPECT_FALSE(inta.empty());
+}
+
+TEST(TransformerFactory, Creates_Transformer_Successfully) {
+	ArrayTransformerFactory<IntVec>* f = new ArraySorterFactory<IntVec>;
+	ASSERT_NE(f, nullptr);
+	ArrayTransformer<IntVec>* t = f->create();
+	ASSERT_NE(t, nullptr);
 }
