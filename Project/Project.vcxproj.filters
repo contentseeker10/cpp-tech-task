@@ -26,5 +26,11 @@
     <ClInclude Include="cprinter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ArrayTransformer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ArrayTransformerFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

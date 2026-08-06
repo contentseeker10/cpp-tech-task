@@ -143,6 +143,8 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ArrayTransformer.h" />
+    <ClInclude Include="ArrayTransformerFactory.h" />
     <ClInclude Include="cprinter.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
