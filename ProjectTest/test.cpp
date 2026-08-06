@@ -11,7 +11,6 @@
 #include "pch.h"
 
 #include <list>
-#include <array>
 
 using StrVec = std::vector<std::string>;
 using IntVec = std::vector<int>;
@@ -82,4 +81,18 @@ TEST(TransformerIntersector, Gets_VectorsIntersection_Correctly) {
 	t->op(v1, v2, v3);
 
 	EXPECT_EQ(v1, expected);
+}
+
+TEST(TransformerIntersector, Gets_ContainersIntersection_Correctly) {
+	std::vector<int> c1{ 1, 2, 3, 4, 5 };
+	std::list<int> c2{ 2, 3, 4 };
+	std::set<int> c3{ 3, 4, 5 };
+	IntVec expected{ 3, 4 };
+
+	auto f = make_factory<ArrayIntersectorFactory>(c1, c2, c3);
+	auto t = f->create();
+
+	t->op(c1, c2, c3);
+
+	EXPECT_EQ(c1, expected);
 }
