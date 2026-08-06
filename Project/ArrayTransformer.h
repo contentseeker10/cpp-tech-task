@@ -11,12 +11,13 @@
 #pragma once
 
 #include "csorter.h"
+#include "cintersector.h"
 
 template <typename T, typename... Args>
 class ArrayTransformer {
 public:
 	virtual ~ArrayTransformer() = default;
-	virtual void op(T& arr, Args... args) = 0;
+	virtual void op(T& arr, const Args&... args) = 0;
 };
 
 template <typename T, typename... Args>
@@ -38,15 +39,15 @@ public:
 template <typename T, typename... Args>
 class ArrayIntersector : public ArrayTransformer<T> {
 public:
-	void op(T& arr, Args... args) override {
-
+	void op(T& arr, const Args&... args) override {
+		custom::intersect(arr, args...);
 	}
 };
 
 template <typename T, typename... Args>
 class ArrayUnifier : public ArrayTransformer<T> {
 public:
-	void op(T& arr, Args... args) override {
+	void op(T& arr, const Args&... args) override {
 
 	}
 };
@@ -54,7 +55,7 @@ public:
 template <typename T, typename... Args>
 class ArrayFilter : public ArrayTransformer<T> {
 public:
-	void op(T& arr, Args... args) override {
+	void op(T& arr, const Args&... args) override {
 
 	}
 };
