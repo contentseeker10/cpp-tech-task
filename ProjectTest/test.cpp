@@ -1,3 +1,13 @@
+/*
+* Copyright Volodymyr "contentseeker10" Stepanov
+* August 2026
+*
+* cpp-tech-task
+* Project
+* 
+* test.cpp
+*/
+
 #include "pch.h"
 
 #include <list>

@@ -4,17 +4,13 @@
 * 
 * cpp-tech-task
 * Project
+* 
+* main.cpp
 */
 
 #include <iostream>
-#include <fstream>
-#include <sstream>
-#include <vector>
-#include <array>
-#include <iterator>
-#include <utility>
 
-#include "array_line_parser.h"
+#include "lparser.h"
 
 using std::cin;
 using std::cout;

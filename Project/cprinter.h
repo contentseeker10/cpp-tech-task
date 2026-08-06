@@ -5,10 +5,8 @@
 * cpp-tech-task
 * Project
 * 
-* pch.h
+* cprinter.h
 */
 
 #pragma once
 
-#include "gtest/gtest.h"
-#include "lparser.h"
