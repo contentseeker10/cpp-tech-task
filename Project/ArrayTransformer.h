@@ -23,7 +23,7 @@ template <typename T>
 class ArraySorter : public ArrayTransformer<T> {
 public:
 	void op(T& arr) override {
-		custom::sort(arr, arr.begin(), arr.end());
+		custom::sort(arr.begin(), arr.end());
 	}
 };
 
@@ -31,7 +31,7 @@ template <typename T>
 class ArrayReverseSorter : public ArrayTransformer<T> {
 public:
 	void op(T& arr) override {
-
+		custom::sort(arr.rbegin(), arr.rend());
 	}
 };
 

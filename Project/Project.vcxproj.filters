@@ -32,5 +32,8 @@
     <ClInclude Include="ArrayTransformerFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="csorter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
