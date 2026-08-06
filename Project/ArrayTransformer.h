@@ -52,11 +52,3 @@ public:
 		custom::unite(arr, args...);
 	}
 };
-
-template <typename T, typename... Args>
-class ArrayFilterUnique : public ArrayTransformer<T, Args...> {
-public:
-	void op(T& arr, const Args&... args) override {
-
-	}
-};
