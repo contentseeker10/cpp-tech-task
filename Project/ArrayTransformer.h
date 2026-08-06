@@ -12,6 +12,7 @@
 
 #include "csorter.h"
 #include "cintersector.h"
+#include "cunifier.h"
 
 template <typename T, typename... Args>
 class ArrayTransformer {
@@ -48,12 +49,12 @@ template <typename T, typename... Args>
 class ArrayUnifier : public ArrayTransformer<T, Args...> {
 public:
 	void op(T& arr, const Args&... args) override {
-
+		custom::unite(arr, args...);
 	}
 };
 
 template <typename T, typename... Args>
-class ArrayFilter : public ArrayTransformer<T, Args...> {
+class ArrayFilterUnique : public ArrayTransformer<T, Args...> {
 public:
 	void op(T& arr, const Args&... args) override {
 

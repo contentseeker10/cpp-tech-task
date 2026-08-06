@@ -54,7 +54,7 @@ class ArrayUnifierFactory : public ArrayTransformerFactory<T, Args...> {
 };
 
 template <typename T, typename... Args>
-class ArrayFilterFactory : public ArrayTransformerFactory<T, Args...> {
+class ArrayFilterUniqueFactory : public ArrayTransformerFactory<T, Args...> {
 	ptr<T, Args...> create() override {
 		return ptr<T, Args...>(new ArrayFilter<T, Args...>());
 	}
