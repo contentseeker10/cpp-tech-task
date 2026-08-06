@@ -5,7 +5,7 @@
 * cpp-tech-task
 * ProjectTest
 *
-* IntersectorTests.cpp
+* UnifierTests.cpp
 */
 
 #include "pch.h"
@@ -21,7 +21,10 @@ TEST(TransformerUnifier, Gets_VectorsUnion_Correctly) {
 
 	t->op(v1, v2, v3);
 
-	EXPECT_EQ(v1, expected);
+	EXPECT_EQ(
+		std::multiset<int>(v1.begin(), v1.end()),
+		std::multiset<int>(expected.begin(), expected.end())
+	);
 }
 
 TEST(TransformerUnifier, Gets_ContainersUnion_Correctly) {
@@ -35,14 +38,17 @@ TEST(TransformerUnifier, Gets_ContainersUnion_Correctly) {
 
 	t->op(c1, c2, c3);
 
-	EXPECT_EQ(c1, expected);
+	EXPECT_EQ(
+		std::multiset<int>(c1.begin(), c1.end()),
+		std::multiset<int>(expected.begin(), expected.end())
+	);
 }
 
-TEST(TransformerUnifier, Gets_UniqueElementsContainer_Correctly) {
+TEST(TransformerUnifier, Keeps_OnlyStrictlyUniqueElements_Correctly) {
 	std::vector<int> c1{ 1, 1, 1, 1 };
 	std::list<int> c2{ 5, 6, 7 };
 	std::set<int> c3{ 6, 9 };
-	IntVec expected{ 1, 5, 6, 7, 9 };
+	IntVec expected{ 5, 7, 9 };
 
 	auto f = make_factory<ArrayUnifierFactory>(c1, c2, c3);
 	auto t = f->create();
