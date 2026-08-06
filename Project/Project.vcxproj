@@ -139,16 +139,16 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="lparser.h" />
+    <ClCompile Include="utils\lparser.h" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ArrayTransformer.h" />
-    <ClInclude Include="ArrayTransformerFactory.h" />
-    <ClInclude Include="cintersector.h" />
-    <ClInclude Include="cprinter.h" />
-    <ClInclude Include="csorter.h" />
-    <ClInclude Include="cunifier.h" />
+    <ClInclude Include="ArrayTransformer\ArrayTransformer.h" />
+    <ClInclude Include="ArrayTransformer\ArrayTransformerFactory.h" />
+    <ClInclude Include="utils\cintersector.h" />
+    <ClInclude Include="utils\cprinter.h" />
+    <ClInclude Include="utils\csorter.h" />
+    <ClInclude Include="utils\cunifier.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

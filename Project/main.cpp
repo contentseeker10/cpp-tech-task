@@ -14,10 +14,10 @@
 #include <vector>
 #include <array>
 
-#include "lparser.h"
-#include "cprinter.h"
-#include "ArrayTransformerFactory.h"
-#include "ArrayTransformer.h"
+#include "utils/lparser.h"
+#include "utils/cprinter.h"
+#include "ArrayTransformer/ArrayTransformerFactory.h"
+#include "ArrayTransformer/ArrayTransformer.h"
 
 using std::cin;
 using std::cout;

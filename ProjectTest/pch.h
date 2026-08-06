@@ -12,6 +12,6 @@
 
 #include "gtest/gtest.h"
 
-#include "lparser.h"
-#include "ArrayTransformer.h"
-#include "ArrayTransformerFactory.h"
+#include "utils/lparser.h"
+#include "ArrayTransformer/ArrayTransformer.h"
+#include "ArrayTransformer/ArrayTransformerFactory.h"

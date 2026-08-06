@@ -10,9 +10,9 @@
 
 #pragma once
 
-#include "csorter.h"
-#include "cintersector.h"
-#include "cunifier.h"
+#include "utils/csorter.h"
+#include "utils/cintersector.h"
+#include "utils/cunifier.h"
 
 template <typename T, typename... Args>
 class ArrayTransformer {

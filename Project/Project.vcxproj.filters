@@ -18,27 +18,27 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="lparser.h">
+    <ClCompile Include="utils\lparser.h">
       <Filter>Header Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cprinter.h">
+    <ClInclude Include="utils\cprinter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ArrayTransformer.h">
+    <ClInclude Include="ArrayTransformer\ArrayTransformer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ArrayTransformerFactory.h">
+    <ClInclude Include="ArrayTransformer\ArrayTransformerFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="csorter.h">
+    <ClInclude Include="utils\csorter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cintersector.h">
+    <ClInclude Include="utils\cintersector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cunifier.h">
+    <ClInclude Include="utils\cunifier.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
