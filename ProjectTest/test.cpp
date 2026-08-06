@@ -11,6 +11,7 @@
 #include "pch.h"
 
 #include <list>
+#include <set>
 
 using StrVec = std::vector<std::string>;
 using IntVec = std::vector<int>;
@@ -123,4 +124,21 @@ TEST(TransformerUnifier, Gets_ContainersUnion_Correctly) {
 	t->op(c1, c2, c3);
 
 	EXPECT_EQ(c1, expected);
+}
+
+TEST(TransformerUnifier, Gets_UniqueElementsContainer_Correctly) {
+	std::vector<int> c1{ 1, 1, 1, 1 };
+	std::list<int> c2{ 5, 6, 7 };
+	std::set<int> c3{ 6, 9 };
+	IntVec expected{ 1, 5, 6, 7, 9 };
+
+	auto f = make_factory<ArrayUnifierFactory>(c1, c2, c3);
+	auto t = f->create();
+
+	t->op(c1, c2, c3);
+
+	EXPECT_EQ(
+		std::multiset<int>(c1.begin(), c1.end()),
+		std::multiset<int>(expected.begin(), expected.end())
+    );
 }

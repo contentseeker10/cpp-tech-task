@@ -21,14 +21,9 @@ namespace custom {
 
 	template <typename T1, typename T2>
 	void unpack_unite(T1& a, T2& b) {
-		std::unordered_set<typename T1::value_type> existing(a.begin(), a.end());
-
-		reserve_if_possible(a, a.size() + b.size());
-
-		for (const auto& e : b) {
-			if (existing.insert(e).second)
-			a.push_back(e);
-		}
+		std::unordered_set<typename T1::value_type> set(a.begin(), a.end());
+		set.insert(b.begin(), b.end());
+		a.assign(set.begin(), set.end());
 	}
 
 	template <typename T, typename... Args>
