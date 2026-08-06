@@ -45,11 +45,13 @@ std::array<IntVec, 3> load_data(std::ifstream& file) {
 }
 
 void test_data(std::array<IntVec, 3> data) {
-
+    for (const auto& c : data) {
+        cprint(c);
+    }
 }
 
 int main() {
-	cout << "\n\tC++ Technical Task - by V.Stepanov\n" << endl;
+	cout << "\n\tC++ Technical Task - by V.Stepanov" << endl;
 
     const std::vector<std::string> test_files = {
         "testdata/v1.txt",
@@ -59,14 +61,16 @@ int main() {
     };
 
     for (size_t i = 0; i < test_files.size(); ++i) {
+        cout << endl;
         std::ifstream file(test_files[i]);
         if (!file.is_open()) {
             std::cerr << "Could not open file testdata/v" << i + 1 << endl;
             return 1;
         }
-        cout << "File #" << i + 1 << endl;
+        cout << "\tFile #" << i + 1 << endl;
         std::array<IntVec, 3> test_matrix{ load_data(file) };
         test_data(test_matrix);
     }
 
+    cout << endl;
 }

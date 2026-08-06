@@ -13,15 +13,6 @@
 #include <iterator>
 
 namespace custom {
-	template <typename It>
-	void sort(It begin, It end) {
-		if (begin < end) {
-			It p = custom::partition(begin, end);
-			custom::sort(begin, p);
-			custom::sort(p + 1, end);
-		}
-	}
-
 	template <typename T>
 	void swap(T& a, T& b) {
 		T temp = a;
@@ -42,5 +33,14 @@ namespace custom {
 		}
 		swap(*i, *(end - 1));
 		return i;
+	}
+
+	template <typename It>
+	void sort(It begin, It end) {
+		if (begin < end) {
+			It p = custom::partition(begin, end);
+			custom::sort(begin, p);
+			custom::sort(p + 1, end);
+		}
 	}
 }

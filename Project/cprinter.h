@@ -11,15 +11,22 @@
 #pragma once
 
 #include <iostream>
+#include <iomanip>
+#include <string>
 
 using std::cout;
 using std::endl;
 
 template <typename T>
-void print(const T& con) {
-	cout << "{ ";
-	for (const auto& e : con) {
-		cout << e << ' ';
-	}
-	cout << "}" << endl;
+void cprint(const T& con) {
+    std::cout << "\t[";
+    bool first = true;
+    for (const auto& e : con) {
+        if (!first) {
+            std::cout << ", ";
+        }
+        std::cout << std::setw(5) << e;
+        first = false;
+    }
+    std::cout << "]\n";
 }
