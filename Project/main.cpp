@@ -44,10 +44,78 @@ std::array<IntVec, 3> load_data(std::ifstream& file) {
     return data_matrix;
 }
 
-void test_data(std::array<IntVec, 3> data) {
+void print_data(std::array<IntVec, 3>& data) {
     for (const auto& c : data) {
         cprint(c);
     }
+}
+
+void test_sorter(IntVec& v1, IntVec& v2, IntVec& v3) {
+    auto fac = make_factory<ArraySorterFactory>(v1, v2, v3);
+    auto sorter = fac->create();
+    sorter->op(v1, v2, v3);
+    cout << "\n\tArrays after ascending sorting:" << endl;
+}
+
+void test_rsorter(IntVec& v1, IntVec& v2, IntVec& v3) {
+    auto fac = make_factory<ArrayReverseSorterFactory>(v1, v2, v3);
+    auto rsorter = fac->create();
+    rsorter->op(v1, v2, v3);
+    cout << "\n\tArrays after descending sorting:" << endl;
+}
+
+void test_intersector(IntVec& v1, IntVec& v2, IntVec& v3) {
+    auto fac = make_factory<ArrayIntersectorFactory>(v1, v2, v3);
+    auto intersector = fac->create();
+    intersector->op(v1, v2, v3);
+    cout << "\n\tAll Arrays Intersection result:" << endl;
+}
+void test_intersector(IntVec& v1, IntVec& v2) {
+    auto fac = make_factory<ArrayIntersectorFactory>(v1, v2);
+    auto intersector = fac->create();
+    intersector->op(v1, v2);
+    cout << "\n\tTwo Largest Arrays Intersection result:" << endl;
+}
+
+void test_unifier(IntVec& v1, IntVec& v2, IntVec& v3) {
+    auto fac = make_factory<ArrayUnifierFactory>(v1, v2, v3);
+    auto unifier = fac->create();
+    unifier->op(v1, v2, v3);
+    cout << "\n\tAll Arrays Unity result:" << endl;
+}
+
+void test_data(std::array<IntVec, 3>& data) {
+    print_data(data);
+
+    IntVec& v1 = data.at(0);
+    IntVec& v2 = data.at(1);
+    IntVec& v3 = data.at(2);
+
+    test_sorter(v1, v2, v3);
+    print_data(data);
+
+    test_rsorter(v1, v2, v3);
+    print_data(data);
+
+    std::vector<IntVec*> ptrs = { &v1, &v2, &v3 };
+    std::sort(ptrs.begin(), ptrs.end(), [](IntVec* a, IntVec* b) { return a->size() > b->size(); });
+    IntVec result = *ptrs[0];
+    test_intersector(result, *ptrs[1]);
+    cprint(result);
+
+    result = v1;
+    test_intersector(result, v2, v3);
+    cprint(result);
+
+    result = v1;
+    test_unifier(result, v2, v3);
+    cprint(result);
+
+    cout << "\n\tAll Arrays Unity Reversed Sort result:" << endl;
+    auto fac = make_factory<ArrayReverseSorterFactory>(result);
+    auto rsorter = fac->create();
+    rsorter->op(result);
+    cprint(result);
 }
 
 int main() {
@@ -61,7 +129,7 @@ int main() {
     };
 
     for (size_t i = 0; i < test_files.size(); ++i) {
-        cout << endl;
+        cout << "\n---\n" << endl;
         std::ifstream file(test_files[i]);
         if (!file.is_open()) {
             std::cerr << "Could not open file testdata/v" << i + 1 << endl;
