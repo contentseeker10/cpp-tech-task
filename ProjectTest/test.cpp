@@ -48,26 +48,34 @@ TEST(TransformerFactory, Creates_Transformer_Successfully) {
 
 TEST(TransformerSorter, Sorts_Ascending_Successfully) {
 	IntVec actual{ 5, 6, 1, 2 };
-	IntVec expected{ 1, 2, 5, 6 };
+	IntVec actual2{ 3, 1, 2 };
 
-	auto f = make_factory<ArraySorterFactory>(actual);
+	IntVec expected{ 1, 2, 5, 6 };
+	IntVec expected2{ 1, 2, 3 };
+
+	auto f = make_factory<ArraySorterFactory>(actual, actual2);
 	auto t = f->create();
 
-	t->op(actual);
+	t->op(actual, actual2);
 
 	EXPECT_EQ(actual, expected);
+	EXPECT_EQ(actual2, expected2);
 }
 
 TEST(TransformerSorter, Sorts_Descending_Successfully) {
 	IntVec actual{ 5, 6, 1, 2 };
-	IntVec expected{ 6, 5, 2, 1 };
+	IntVec actual2{ 3, 1, 2 };
 
-	auto f = make_factory<ArrayReverseSorterFactory>(actual);
+	IntVec expected{ 6, 5, 2, 1 };
+	IntVec expected2{ 3, 2, 1 };
+
+	auto f = make_factory<ArrayReverseSorterFactory>(actual, actual2);
 	auto t = f->create();
 
-	t->op(actual);
+	t->op(actual, actual2);
 
 	EXPECT_EQ(actual, expected);
+	EXPECT_EQ(actual2, expected2);
 }
 
 TEST(TransformerIntersector, Gets_VectorsIntersection_Correctly) {
