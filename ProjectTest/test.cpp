@@ -16,8 +16,8 @@
 using StrVec = std::vector<std::string>;
 using IntVec = std::vector<int>;
 
-template <typename T>
-using Fac = std::unique_ptr<ArrayTransformerFactory<T>>;
+template <typename T, typename... Args>
+using Fac = std::unique_ptr<ArrayTransformerFactory<T, Args...>>;
 
 TEST(Parser, Fills_StringVector_Successfully) {
 	std::string test_data = "10 20 30\n15 25 35\n100 200 300";
@@ -46,11 +46,11 @@ TEST(TransformerFactory, Creates_Transformer_Successfully) {
 	EXPECT_NE(t, nullptr);
 }
 
-TEST(Transformer, Sorts_Ascending_Successfully) {
+TEST(TransformerSorter, Sorts_Ascending_Successfully) {
 	IntVec actual{ 5, 6, 1, 2 };
 	IntVec expected{ 1, 2, 5, 6 };
 
-	Fac<IntVec> f(new ArraySorterFactory<IntVec>);
+	auto f = make_factory<ArraySorterFactory>(actual);
 	auto t = f->create();
 
 	t->op(actual);
@@ -58,14 +58,28 @@ TEST(Transformer, Sorts_Ascending_Successfully) {
 	EXPECT_EQ(actual, expected);
 }
 
-TEST(Transformer, Sorts_Descending_Successfully) {
+TEST(TransformerSorter, Sorts_Descending_Successfully) {
 	IntVec actual{ 5, 6, 1, 2 };
 	IntVec expected{ 6, 5, 2, 1 };
 
-	Fac<IntVec> f(new ArrayReverseSorterFactory<IntVec>);
+	auto f = make_factory<ArrayReverseSorterFactory>(actual);
 	auto t = f->create();
 
 	t->op(actual);
 
 	EXPECT_EQ(actual, expected);
+}
+
+TEST(TransformerIntersector, Gets_VectorsIntersection_Correctly) {
+	IntVec v1{ 1, 2, 3, 4, 5 };
+	IntVec v2{ 2, 3, 4 };
+	IntVec v3{ 3, 4, 5 };
+	IntVec expected{ 3, 4 };
+
+	auto f = make_factory<ArrayIntersectorFactory>(v1, v2, v3);
+	auto t = f->create();
+
+	t->op(v1, v2, v3);
+
+	EXPECT_EQ(v1, expected);
 }
